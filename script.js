@@ -32,6 +32,15 @@ function toggleBtn(id) {
   const clickbtn = document.getElementById(id);
   clickbtn.classList.add("bg-blue-500", "text-white");
   clickbtn.classList.remove("bg-white", "text-black");
+  if (id == "interview-btn") {
+    allCardContainer.classList.add("hidden");
+    document.getElementById("allFilter").classList.remove("hidden");
+    interviedRender();
+  } else if (id == "all-btn") {
+    allCardContainer.classList.remove("hidden");
+    document.getElementById("allFilter").classList.add("hidden");
+    document.getElementById("allFilter").innerHTML = "";
+  }
 }
 allBtn.addEventListener("click", function () {
   currentStatus = "all";
@@ -82,5 +91,78 @@ function filterSection() {
     let section = document.createElement("div");
     section.innerHTML = `<h3>${item.name}</h3>`;
     pusHere.appendChild(section);
+  }
+}
+
+// add to interview
+const mainContainer = document.querySelector("main");
+
+mainContainer.addEventListener("click", function (event) {
+  console.log(event.target.classList.contains("btn-interview"));
+  if (event.target.classList.contains("btn-interview")) {
+    const clickedElement = event.target.parentNode.parentNode.parentNode;
+    const jobName = clickedElement.querySelector(".jobName").innerText;
+    const jobtitle = clickedElement.querySelector(".jobTitle").innerText;
+    const time = clickedElement.querySelector(".jobmean").innerText;
+    const statusBtn = clickedElement.querySelector(".status").innerText;
+    const jobThing = clickedElement.querySelector(".jobThing").innerText;
+    console.log(jobName, jobtitle, time, jobThing, statusBtn);
+    const cardInfo = {
+      jobName,
+      jobtitle,
+      time,
+      jobThing,
+      statusBtn: "interview",
+    };
+    // check if the job is already in the interview list
+    const jobExists = interViews.find(
+      (item) => item.jobName === cardInfo.jobName,
+    );
+    clickedElement.querySelector(".status").innerText = "Interview";
+
+    if (!jobExists) {
+      interViews.push(cardInfo);
+    }
+    console.log(interViews);
+    culculateCards();
+    interviedRender();
+  }
+});
+
+// create card function
+const allFilterSection = document.getElementById("allFilter");
+function interviedRender() {
+  allFilterSection.innerHTML = "";
+  for (let item of interViews) {
+    console.log(item);
+    let section = document.createElement("div");
+    section.className = "bg-white p-5 rounded-lg shadow-md space-y-3";
+
+    section.innerHTML = `
+                    <div class="flex justify-between">
+                    <div>
+                        <h3 class="jobName">${item.jobName}</h3>
+                        <p class="jobTitle text-gray-600">${item.jobtitle}</p>
+                    </div>
+                    <div>
+                        <img src="./Group 1 (2).png" alt="">
+                    </div>
+
+                </div>
+                <p class=" jobmean text-gray-600">Remote • Full-time • $130,000 - $175,000</p>
+                <button class="status px-6  py-3 bg-gray-200">Not Applied</button>
+                <p class="jobThing">Build cross-platform mobile applications using React Native. Work on products used
+                    by millions of
+                    users worldwide.</p>
+                <div class="flex gap-3">
+                    <button
+                        class="btn-interview px-6 py-2 border border-green-500 text-green-500 font-bold rounded">INTERVIES</button>
+                    <button
+                        class="btn-rejected px-6 py-2 border border-red-500 text-red-500 font-bold rounded">REJECTED</button>
+                </div>
+
+
+    `;
+    allFilterSection.appendChild(section);
   }
 }
