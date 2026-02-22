@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Tracker</title>
+    <!-- favicon icons -->
+    <link rel="shortcut icon" href="./jobs.png" type="image/x-icon">
+    <!-- taiwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Outfit:wght@100..900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            font-family: "Geist", sans-serif;
+        }
+    </style>
+
+</head>
+</head>
+
+
+<body class="bg-gray-100">
+    <!-- nav section -->
+    <header class="w-[80%] mx-auto">
+        <h1 class="text-4xl font-bold py-6">Job Application Tracker</h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="bg-white p-4 rounded-lg">
+                <p>Total</p>
+                <p id="totalCount" class="font-bold">0</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg">
+                <p>Interview</p>
+                <p id="interviewCount" class="text-green-500 font-bold"> <span>0</span></p>
+            </div>
+            <div class="bg-white p-4 rounded-lg">
+                <p>Rejected</p>
+                <p id="rejectCount" class="text-red-500 font-bold"> <span>0</span></p>
+            </div>
+        </div>
+    </header>
+    <hr class="w-[80%] text-gray-300 mx-auto my-5">
+    <main class="w-[80%] mx-auto">
+
+        <!-- new section -->
+         <section id="not-abbalesection">
+            <div class="hidden flex flex-col bg-white p-5 my-5 rounded-lg shadow-md space-y-3 text-center py-10 justify-center items-center">
+                <img src="./jobs.png" alt="">
+                <h2>No jobs available</h2>
+                <p>Check back soon for new job opportunities</p>
+            </div>
+         </section>
+
+
+        <!-- 3 btn all interview and rejected -->
+        <section>
+            <div class="flex justify-between">
+                <p class="font-bold text-xl">Available jobs</p>
+                <p id="availableJobsCount">0 jobs</p>
+            </div>
+            <div class="flex ml-0 gap-4 mt-[20px]">
+                <button onclick="toggleBtn('all-btn')" id="all-btn"
+                    class="bg-blue-500 text-white font-bold py-2 px-8 rounded">All </button>
+                <button onclick="toggleBtn('interview-btn')" id="interview-btn"
+                    class="bg-white text-black font-bold py-2 px-6 rounded ">Interview</button>
+                <button onclick="toggleBtn('rejected-btn')" id="rejected-btn"
+                    class="bg-white text-black font-bold py-2 px-6 rounded ">Rejected</button>
+            </div>
+        </section>
+
+        <!-- add new card or new element -->
+
+        <section id="filterNewsection">
+
+        </section>
+
+        <!--main card section -->
+        <section id="allCard-container" class="mt-6 grid grid-cols-1 gap-6">
+            <!-- card-01 -->
+            <div class="bg-white p-5 rounded-lg shadow-md space-y-3">
+                <div class="flex justify-between">
+                    <div>
+                        <h3 class="jobName">Mobile First Crop</h3>
+                        <p class= "jobTitle text-gray-600">React Native Developer</p>
+                    </div>
+                    <div>
+                        <img src="./Group 1 (2).png" alt="">
+                    </div>
+
+                </div>
+                <p class= " jobmean text-gray-600">Remote • Full-time • $130,000 - $175,000</p>
+                <button class=" px-6  py-3 bg-gray-200">Not Applied</button>
+                <p class="jobThing">Build cross-platform mobile applications using React Native. Work on products used by millions of
+                    users worldwide.</p>
+                <div class="flex gap-3">
+                    <button
+                        class="btn-interview px-6 py-2 border border-green-500 text-green-500 font-bold rounded">INTERVIES</button>
+                    <button
+                        class="btn-rejected px-6 py-2 border border-red-500 text-red-500 font-bold rounded">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- card-02 -->
+            <div class="bg-white p-5 rounded-lg shadow-md space-y-3">
+                <div class="flex justify-between">
+                    <div>
+                        <h3>Mobile First Crop</h3>
+                        <p class="text-gray-600">React Native Developer</p>
+                    </div>
+                    <div>
+                        <img src="./Group 1 (2).png" alt="">
+                    </div>
+
+                </div>
+                <p class="text-gray-600">Remote • Full-time • $130,000 - $175,000</p>
+                <button class="px-6  py-3 bg-gray-200">Not Applied</button>
+                <p>Build cross-platform mobile applications using React Native. Work on products used by millions of
+                    users worldwide.</p>
+                <div class="flex gap-3">
+                    <button id="btn-interview"
+                        class="px-6 py-2 border border-green-500 text-green-500 font-bold rounded">INTERVIES</button>
+                    <button id="btn-rejected"
+                        class="px-6 py-2 border border-red-500 text-red-500 font-bold rounded">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- card-03 -->
+            <div class="bg-white p-5 rounded-lg shadow-md space-y-3">
+                <div class="flex justify-between">
+                    <div>
+                        <h3>Mobile First Crop</h3>
+                        <p class="text-gray-600">React Native Developer</p>
+                    </div>
+                    <div>
+                        <img src="./Group 1 (2).png" alt="">
+                    </div>
+
+                </div>
+                <p class="text-gray-600">Remote • Full-time • $130,000 - $175,000</p>
+                <button class="px-6  py-3 bg-gray-200">Not Applied</button>
+                <p>Build cross-platform mobile applications using React Native. Work on products used by millions of
+                    users worldwide.</p>
+                <div class="flex gap-3">
+                    <button id="btn-interview"
+                        class="px-6 py-2 border border-green-500 text-green-500 font-bold rounded">INTERVIES</button>
+                    <button id="btn-rejected"
+                        class="px-6 py-2 border border-red-500 text-red-500 font-bold rounded">REJECTED</button>
+                </div>
+            </div>
+            <!-- card-04 -->
+            <div class="bg-white p-5 rounded-lg shadow-md space-y-3">
+                <div class="flex justify-between">
+                    <div>
+                        <h3>Mobile First Crop</h3>
+                        <p class="text-gray-600">React Native Developer</p>
+                    </div>
+                    <div>
+                        <img src="./Group 1 (2).png" alt="">
+                    </div>
+
+                </div>
+                <p class="text-gray-600">Remote • Full-time • $130,000 - $175,000</p>
+                <button class="px-6  py-3 bg-gray-200">Not Applied</button>
+                <p>Build cross-platform mobile applications using React Native. Work on products used by millions of
+                    users worldwide.</p>
+                <div class="flex gap-3">
+                    <button id="btn-interview"
+                        class="px-6 py-2 border border-green-500 text-green-500 font-bold rounded">INTERVIES</button>
+                    <button id="btn-rejected"
+                        class="px-6 py-2 border border-red-500 text-red-500 font-bold rounded">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- card-05 -->
+            <div class="bg-white p-5 rounded-lg shadow-md space-y-3">
+                <div class="flex justify-between">
+                    <div>
+                        <h3>Mobile First Crop</h3>
+                        <p class="text-gray-600">React Native Developer</p>
+                    </div>
+                    <div>
+                        <img src="./Group 1 (2).png" alt="">
+                    </div>
+
+                </div>
+                <p class="text-gray-600">Remote • Full-time • $130,000 - $175,000</p>
+                <button class="px-6  py-3 bg-gray-200">Not Applied</button>
+                <p>Build cross-platform mobile applications using React Native. Work on products used by millions of
+                    users worldwide.</p>
+                <div class="flex gap-3">
+                    <button id="btn-interview"
+                        class="px-6 py-2 border border-green-500 text-green-500 font-bold rounded">INTERVIES</button>
+                    <button id="btn-rejected"
+                        class="px-6 py-2 border border-red-500 text-red-500 font-bold rounded">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- card-06 -->
+            <div class="bg-white p-5 rounded-lg shadow-md space-y-3">
+                <div class="flex justify-between">
+                    <div>
+                        <h3>Mobile First Crop</h3>
+                        <p class="text-gray-600">React Native Developer</p>
+                    </div>
+                    <div>
+                        <img src="./Group 1 (2).png" alt="">
+                    </div>
+
+                </div>
+                <p class="text-gray-600">Remote • Full-time • $130,000 - $175,000</p>
+                <button class="px-6  py-3 bg-gray-200">Not Applied</button>
+                <p>Build cross-platform mobile applications using React Native. Work on products used by millions of
+                    users worldwide.</p>
+                <div class="flex gap-3">
+                    <button id="btn-interview"
+                        class="px-6 py-2 border border-green-500 text-green-500 font-bold rounded">INTERVIES</button>
+                    <button id="btn-rejected"
+                        class="px-6 py-2 border border-red-500 text-red-500 font-bold rounded">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- card-07 -->
+            <div class="bg-white p-5 rounded-lg shadow-md space-y-3">
+                <div class="flex justify-between">
+                    <div>
+                        <h3>Mobile First Crop</h3>
+                        <p class="text-gray-600">React Native Developer</p>
+                    </div>
+                    <div>
+                        <img src="./Group 1 (2).png" alt="">
+                    </div>
+
+                </div>
+                <p class="text-gray-600">Remote • Full-time • $130,000 - $175,000</p>
+                <button class="px-6  py-3 bg-gray-200">Not Applied</button>
+                <p>Build cross-platform mobile applications using React Native. Work on products used by millions of
+                    users worldwide.</p>
+                <div class="flex gap-3">
+                    <button id="btn-interview"
+                        class="px-6 py-2 border border-green-500 text-green-500 font-bold rounded">INTERVIES</button>
+                    <button id="btn-rejected"
+                        class="px-6 py-2 border border-red-500 text-red-500 font-bold rounded">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- card-08 -->
+            <div class="bg-white p-5 rounded-lg shadow-md space-y-3">
+                <div class="flex justify-between">
+                    <div>
+                        <h3>Mobile First Crop</h3>
+                        <p class="text-gray-600">React Native Developer</p>
+                    </div>
+                    <div>
+                        <img src="./Group 1 (2).png" alt="">
+                    </div>
+
+                </div>
+                <p class="text-gray-600">Remote • Full-time • $130,000 - $175,000</p>
+                <button class="px-6  py-3 bg-gray-200">Not Applied</button>
+                <p>Build cross-platform mobile applications using React Native. Work on products used by millions of
+                    users worldwide.</p>
+                <div class="flex gap-3">
+                    <button id="btn-interview"
+                        class="px-6 py-2 border border-green-500 text-green-500 font-bold rounded">INTERVIES</button>
+                    <button id="btn-rejected"
+                        class="px-6 py-2 border border-red-500 text-red-500 font-bold rounded">REJECTED</button>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
