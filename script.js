@@ -38,6 +38,7 @@ function toggleBtn(id) {
   currentStatus = id;
   clickbtn.classList.add("bg-blue-500", "text-white");
   clickbtn.classList.remove("bg-white", "text-black");
+
   if (id === "interview-btn") {
     allCardContainer.classList.add("hidden");
     allFilterSection.classList.remove("hidden");
@@ -92,8 +93,6 @@ mainContainer.addEventListener("click", function (event) {
       jobThing,
       statusBtn: "interview",
     };
-    console.log(statusBtn);
-    
     console.log(cardInfo.jobName);
     // check if the job is already in the interview list
     const jobExists = interViews.find(
@@ -179,7 +178,7 @@ function renderInterview() {
 
                 </div>
                 <p class=" jobmean text-gray-600">${inter.time}</p>
-                <button class="status px-6  py-3 bg-green-200">${inter.statusBtn}</button>
+                <button class="status px-6  py-3 bg-gray-200">${inter.statusBtn}</button>
                 <p class="jobThing">${inter.jobThing}</p>
                     users worldwide.</p>
                 <div class="flex gap-3">
