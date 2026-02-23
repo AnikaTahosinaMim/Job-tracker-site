@@ -97,9 +97,9 @@ mainContainer.addEventListener("click", function (event) {
     }
     rejected = rejected.filter((item) => item.jobName !== cardInfo.jobName);
     culculateCards();
-    if (currentStatus === "interview-btn") {
-      renderInterview();
-    }
+
+    renderInterview();
+    renderRejected();
   } else if (event.target.classList.contains("btn-rejected")) {
     const clickedElement = event.target.closest(".card");
     console.log(clickedElement);
@@ -127,9 +127,10 @@ mainContainer.addEventListener("click", function (event) {
       rejected.push(cardInfo);
     }
     interViews = interViews.filter((item) => item.jobName !== cardInfo.jobName);
-    if (currentStatus === "rejected-btn") {
-      renderRejected();
-    }
+
+    renderRejected();
+    renderInterview();
+
     culculateCards();
   }
 });
@@ -147,11 +148,11 @@ function renderInterview() {
       <h2 class="text-center text-3xl font-bold text-gray-800">No jobs available</h2>
       <p class="text-center text-xl text-gray-600">Check back soon for new job opportunities</p>
     </div>
-    <h2 class="text-center text-gray-600">No interview applications yet.</h2>
     `;
     allFilterSection.appendChild(div);
     return;
   }
+  console.log(interViews);
   for (let inter of interViews) {
     console.log(inter);
     const div = document.createElement("div");
@@ -184,7 +185,6 @@ function renderInterview() {
 
     `;
     allFilterSection.appendChild(div);
-    return;
   }
 }
 function renderRejected() {
@@ -198,7 +198,6 @@ function renderRejected() {
       <h2 class="text-center text-3xl font-bold text-gray-800">No jobs available</h2>
       <p class="text-center text-xl text-gray-600">Check back soon for new job opportunities</p>
     </div>
-    <h2 class="text-center text-gray-600">No interview applications yet.</h2>
     `;
     allFilterSection.appendChild(div);
   }
