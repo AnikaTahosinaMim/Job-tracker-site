@@ -11,11 +11,15 @@ let total = document.getElementById("totalCount");
 const interViewCrads = document.getElementById("interviewCount");
 const rejectedCards = document.getElementById("rejectCount");
 const allFilterSection = document.getElementById("allFilter");
+const availableJobsCount = document.getElementById("availableJobsCount");
 // console.log(allCardCount);
 function culculateCards() {
   total.innerText = allCardContainer.children.length;
   interViewCrads.innerText = interViews.length;
   rejectedCards.innerText = rejected.length;
+  // x of y jobs
+  const totalJobs = allCardContainer.children.length;
+  const availableJobsCount = document.getElementById("availableJobsCount");
 }
 culculateCards();
 
@@ -41,6 +45,8 @@ function toggleBtn(id) {
   } else if (id === "all-btn") {
     allCardContainer.classList.remove("hidden");
     allFilterSection.classList.add("hidden");
+    document.getElementById("availableJobsCount").innerText =
+      document.getElementById("allCard-container").children.length;
   } else if (id === "rejected-btn") {
     allCardContainer.classList.add("hidden");
     allFilterSection.classList.remove("hidden");
@@ -59,6 +65,7 @@ mainContainer.addEventListener("click", function (event) {
     card.remove();
     interViews = interViews.filter((item) => item.jobName !== jobName);
     rejected = rejected.filter((item) => item.jobName !== jobName);
+
     culculateCards();
   }
   if (currentStatus === "interview-btn") {
@@ -71,7 +78,7 @@ mainContainer.addEventListener("click", function (event) {
   console.log(event.target.classList.contains("btn-interview"));
   if (event.target.classList.contains("btn-interview")) {
     const clickedElement = event.target.closest(".card");
-    console.log(clickedElement);
+    // console.log(clickedElement);
     const jobName = clickedElement.querySelector(".jobName").innerText;
     const jobtitle = clickedElement.querySelector(".jobTitle").innerText;
     const time = clickedElement.querySelector(".jobmean").innerText;
@@ -85,6 +92,8 @@ mainContainer.addEventListener("click", function (event) {
       jobThing,
       statusBtn: "interview",
     };
+    console.log(statusBtn);
+    
     console.log(cardInfo.jobName);
     // check if the job is already in the interview list
     const jobExists = interViews.find(
@@ -116,7 +125,7 @@ mainContainer.addEventListener("click", function (event) {
       jobThing,
       statusBtn: "rejected",
     };
-    console.log(cardInfo.jobName);
+    // console.log(cardInfo.jobName);
     // check if the job is already in the interview list
     const jobExists = rejected.find(
       (item) => item.jobName === cardInfo.jobName,
@@ -130,7 +139,6 @@ mainContainer.addEventListener("click", function (event) {
 
     renderRejected();
     renderInterview();
-
     culculateCards();
   }
 });
@@ -152,7 +160,7 @@ function renderInterview() {
     allFilterSection.appendChild(div);
     return;
   }
-  console.log(interViews);
+  // console.log(interViews);
   for (let inter of interViews) {
     console.log(inter);
     const div = document.createElement("div");
@@ -171,7 +179,7 @@ function renderInterview() {
 
                 </div>
                 <p class=" jobmean text-gray-600">${inter.time}</p>
-                <button class="status px-6  py-3 bg-gray-200">${inter.statusBtn}</button>
+                <button class="status px-6  py-3 bg-green-200">${inter.statusBtn}</button>
                 <p class="jobThing">${inter.jobThing}</p>
                     users worldwide.</p>
                 <div class="flex gap-3">
@@ -203,7 +211,7 @@ function renderRejected() {
   }
 
   for (let reject of rejected) {
-    console.log(reject);
+    // console.log(reject);
     const div = document.createElement("div");
     div.className = "bg-white p-5 rounded-lg shadow-md space-y-3 mt-10 card";
     div.innerHTML = `
