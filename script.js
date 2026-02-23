@@ -6,14 +6,14 @@ let currentStatus = "all";
 // total card count
 const allCardContainer = document.getElementById("allCard-container");
 let total = document.getElementById("totalCount");
-const allCardCount = allCardContainer.children.length;
+// const allCardCount = allCardContainer.children.length;
 // interViews card count
 const interViewCrads = document.getElementById("interviewCount");
 const rejectedCards = document.getElementById("rejectCount");
 const allFilterSection = document.getElementById("allFilter");
 // console.log(allCardCount);
 function culculateCards() {
-  total.innerHTML = allCardCount;
+  total.innerText = allCardContainer.children.length;
   interViewCrads.innerText = interViews.length;
   rejectedCards.innerText = rejected.length;
 }

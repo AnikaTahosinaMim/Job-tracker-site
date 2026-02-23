@@ -39,6 +39,7 @@ It uses event bubbling to detect which child triggered the event.
 2.Works for dynamically added elements
 
 3.Reduces duplicate event listeners
+
 5️⃣ What is the difference between preventDefault() and stopPropagation()?
 🔹 preventDefault()
 Stops the default browser behavior.
